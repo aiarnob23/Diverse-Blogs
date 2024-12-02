@@ -6,7 +6,8 @@ const UserDashboard = async () => {
     const session = await getServerSession(authOptions);
     console.log(session);
   return (
-      <div> 
+    <div> 
+      User name: 
          {session?.user?.name}
       </div>
   );
