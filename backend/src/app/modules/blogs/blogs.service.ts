@@ -20,13 +20,21 @@ const postNewBlog = async (payload: TBlog) => {
 };
 
 //get all blogs
-const getBLogs = async (category:any) => {
+const getBLogs = async (category:any, page:any, blogs:any) => {
   let filter = {}; 
+  let currentPage = page || 1;
+  let limit = blogs || 18;
+  console.log(currentPage, limit);
   if (category) {
     filter = { category };
   }
-  const result = await Blog.find(filter).sort({date:-1});
-  return result;
+  const totalBLogs = await Blog.countDocuments(filter);
+  const result = await Blog.find(filter)
+    .skip((+currentPage - 1) * +limit)
+    .limit(+limit)
+    .sort({ date: -1 });
+  console.log(result);
+  return { result, totalBLogs};
 }
 
 //get blogs using user email

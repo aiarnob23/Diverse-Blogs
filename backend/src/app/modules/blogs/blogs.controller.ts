@@ -40,8 +40,8 @@ const getBlogDetails = catchAsync(async (req, res) => {
 
 //get all blogs 
 const getAllBlogs = catchAsync(async (req, res) => {
-  const { category } = req?.query || null;
-  const result = await blogServices.getBLogs(category);
+  const { category , page, blogs } = req?.query || null;
+  const result = await blogServices.getBLogs(category , page, blogs);
   sendResponse(res, {
     success: true,
     statusCode: 200,

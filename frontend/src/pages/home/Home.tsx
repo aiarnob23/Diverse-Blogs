@@ -10,7 +10,7 @@ export default function Home() {
     <div className="relative">
       <Banner />
       <div className="max-w-[1280px] mx-auto">
-        <BlogList />
+        <BlogList category={"All"}/>
       </div>
       <div className="fixed bottom-8 right-8">
         <button

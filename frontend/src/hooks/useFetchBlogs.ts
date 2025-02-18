@@ -6,12 +6,13 @@ export const useFetchBlogs = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getBlogs = async (selectedCategory: any) => {
+  const getBlogs = async (selectedCategory: any , currentPage :number, blogPerPage:number) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetchAllBlogs(selectedCategory);
-      setBlogs(response);
+      const response = await fetchAllBlogs(selectedCategory, currentPage, blogPerPage);
+      setBlogs(response?.result);
+      return (response?.totalBLogs);
     } catch (err: any) {
       setError(err?.message || "Something went wrong");
     } finally {

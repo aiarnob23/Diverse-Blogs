@@ -71,9 +71,9 @@ export const fetchBlogDetails = async (id:any) => {
 };
 
 //fetch all blogs or category based blogs
-export const fetchAllBlogs = async (category: any) => {
+export const fetchAllBlogs = async (category: any , currentPage:number, blogPerPage:number) => {
   try {
-    const response = await baseUrl.get(`blogs/all-blogs?category=${category}`, {
+    const response = await baseUrl.get(`blogs/all-blogs?category=${category}&page=${currentPage}&blogs=${blogPerPage}`, {
       headers: {
         Authorization: `${token}`,
       },

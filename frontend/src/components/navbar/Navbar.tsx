@@ -21,7 +21,7 @@ export default function Navbar() {
         <NavLink to="/user/following">Following</NavLink>
       </li>
       <li>
-        <NavLink to="/search">Search</NavLink>
+        <NavLink to="/user/blogs/search">Search</NavLink>
       </li>
       { user &&
         <li>

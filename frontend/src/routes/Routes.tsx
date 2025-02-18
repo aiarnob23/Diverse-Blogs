@@ -9,6 +9,7 @@ import Register from "../pages/register/Register";
 import CreateBlog from "../pages/createBlog/CreateBlog";
 import UserProfile from "../pages/userProfile/userProfile";
 import ReadBlog from "../pages/readBlog/ReadBlog";
+import Search from "../pages/search/Search";
 
 const router = createBrowserRouter([
   {
@@ -54,8 +55,11 @@ const router = createBrowserRouter([
       {
         path: "/user/blog/:id",
         element:<ReadBlog/>
-        
       },
+      {
+        path: "/user/blogs/search",
+        element:<Search/>
+      }
     ],
   },
 ]);
