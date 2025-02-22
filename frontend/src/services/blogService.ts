@@ -84,3 +84,17 @@ export const fetchAllBlogs = async (category: any , currentPage:number, blogPerP
     return null;
   }
 };
+
+
+//fetch blogs by search-term
+export const fetchBlogsBySearchTerm = async (searchTerm: any) => {
+  try {
+    const response = await baseUrl.get(`blogs/search?searchTerm=${searchTerm}`)
+    const result = response?.data?.data || [];
+    return result;
+  }
+  catch (error) {
+    console.error("Failed to fetch search results!");
+    return null;
+  }
+}

@@ -51,10 +51,23 @@ const getAllBlogs = catchAsync(async (req, res) => {
 
 })
 
+//get blogs by search-term
+const getBlogsBySearch = catchAsync(async (req, res) => {
+  const searchTerm = req?.query?.searchTerm || "";
+  const result = await blogServices.getBlogsBySearchTerm(searchTerm);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Search Results",
+    data:result,
+  })
+})
+
 
 export const blogControllers = {
   createNewBlog,
   getUserBlogs,
   getBlogDetails,
   getAllBlogs,
+  getBlogsBySearch,
 }
