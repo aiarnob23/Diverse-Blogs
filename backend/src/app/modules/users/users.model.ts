@@ -29,16 +29,20 @@ const userSchema = new Schema<TUser>({
     type: String,
     default: "",
   },
-  followers: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required:false
-  },
-  followings: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required:false
-  },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+  ],
+  followings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+  ],
 });
 
 export const User = model<TUser>("User", userSchema);
