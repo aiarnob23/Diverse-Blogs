@@ -7,7 +7,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import Following from "../pages/following/Following";
 import Register from "../pages/register/Register";
 import CreateBlog from "../pages/createBlog/CreateBlog";
-import UserProfile from "../pages/userProfile/userProfile";
+import UserProfile from "../pages/selfProfile/selfProfile";
 import ReadBlog from "../pages/readBlog/ReadBlog";
 import Search from "../pages/search/Search";
 
