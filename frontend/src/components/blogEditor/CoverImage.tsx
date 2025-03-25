@@ -1,3 +1,4 @@
+// CoverImage.tsx
 import React, { useState } from "react";
 
 interface CoverImageUploaderProps {
@@ -23,6 +24,7 @@ const CoverImageUploader: React.FC<CoverImageUploaderProps> = ({
           reject(
             `Image exceeds the maximum allowed dimensions of ${MAX_WIDTH}x${MAX_HEIGHT}px.`
           );
+          URL.revokeObjectURL(objectURL);
           return;
         }
 
@@ -59,6 +61,7 @@ const CoverImageUploader: React.FC<CoverImageUploaderProps> = ({
               } else {
                 reject("Image resizing failed.");
               }
+              URL.revokeObjectURL(objectURL);
             },
             "image/jpeg",
             0.8 // Adjust the quality as needed
@@ -68,6 +71,7 @@ const CoverImageUploader: React.FC<CoverImageUploaderProps> = ({
 
       img.onerror = () => {
         reject("Failed to load image.");
+        URL.revokeObjectURL(objectURL);
       };
 
       img.src = objectURL;
@@ -87,7 +91,8 @@ const CoverImageUploader: React.FC<CoverImageUploaderProps> = ({
 
       try {
         const resizedFile = await resizeImage(file);
-        setPreview(URL.createObjectURL(resizedFile));
+        const previewUrl = URL.createObjectURL(resizedFile);
+        setPreview(previewUrl);
         onCoverImageChange(resizedFile); // Pass the resized image to the parent component
       } catch (error) {
         console.error(error);
@@ -99,16 +104,43 @@ const CoverImageUploader: React.FC<CoverImageUploaderProps> = ({
   return (
     <div>
       <div
-        className="w-64 h-64 border-2 border-dashed border-gray-400 rounded-md flex items-center justify-center cursor-pointer hover:border-blue-500"
+        className="w-full h-40 border border-dashed border-gray-300 rounded-md flex items-center justify-center cursor-pointer hover:border-blue-500 overflow-hidden relative"
         onClick={() => document.getElementById("cover-upload")?.click()}
-        style={{
-          backgroundImage: preview ? `url(${preview})` : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       >
-        {!preview && (
-          <span className="text-gray-500">Click to add a cover image</span>
+        {preview ? (
+          <div className="absolute inset-0">
+            <img
+              src={preview}
+              alt="Cover preview"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span className="text-white bg-black bg-opacity-60 px-2 py-1 rounded text-sm">
+                Change image
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="text-center p-4">
+            <svg
+              className="mx-auto h-12 w-12 text-gray-400"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+            >
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p className="mt-1 text-sm text-gray-500">
+              Click to upload cover image
+            </p>
+            <p className="text-xs text-gray-400">Max 300KB, 1200x630px</p>
+          </div>
         )}
       </div>
 

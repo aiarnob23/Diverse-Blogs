@@ -3,6 +3,8 @@ import cover from "../../../public/images/auth/leaf-table-min.jpg";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useGoogleSignIn } from "../../hooks/useGoogleSignIn";
 import { useLoginUser } from "../../hooks/useLoginUser";
+import { useAlert } from "../../context/AlertContext";
+
 
 export default function Login() {
   const { handleGoogleSignIn } = useGoogleSignIn();
@@ -12,6 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const { showAlert } = useAlert();
 
   //handle manual login
   const handleEmailPassLogin = async (e: React.FormEvent) => {
@@ -20,6 +23,12 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await loginUser(email, password); 
+      if (res?.success) {
+        setTimeout(() => {
+          showAlert("success", "Login Successful");
+          window.location.replace("/");
+        }, 400);
+      }
       if (res?.error) {
         setError(res.error); 
       }

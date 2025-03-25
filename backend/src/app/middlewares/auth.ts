@@ -2,13 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../config";
 
-// Extend the Request interface locally in this file
 interface CustomRequest extends Request {
   user?: string | JwtPayload;
 }
 
 export const verifyToken = (
-  req: CustomRequest, // Use the extended CustomRequest type
+  req: CustomRequest, 
   res: Response,
   next: NextFunction
 ): void => {
@@ -32,10 +31,10 @@ export const verifyToken = (
       | JwtPayload;
     console.log("Decoded token:", decoded);
 
-    // Attach user info to the request
+ 
     req.user = decoded;
 
-    next(); // Call the next middleware
+    next(); 
   } catch (error) {
     console.error("Token verification failed:", error);
     res.status(403).json({

@@ -1,10 +1,16 @@
 import { User } from "../users/users.model";
+import { userServices } from "../users/users.service";
 import { TBlog } from "./blogs.interface";
 import { Blog } from "./blogs.model";
 
 //post new blog
 const postNewBlog = async (payload: TBlog) => {
-  const blog = await Blog.create(payload);
+  const author = await userServices.getUserDetails(payload.authorEmail);
+  const authorName = author?.name;
+
+  const updatedPayload = { ...payload, authorName };
+
+  const blog = await Blog.create(updatedPayload);
   console.log("Created blog:", blog);
 
   if (blog?._id) {
@@ -13,15 +19,13 @@ const postNewBlog = async (payload: TBlog) => {
       { $push: { blogs: blog?._id } },
       { new: true }
     );
-
-    console.log("Updated user:", updatedUser);
     return { blog, updatedUser };
   }
 };
 
 //get blogs by search-term
 const getBlogsBySearchTerm = async (searchTerm: any) => {
-  if (searchTerm === "" || searchTerm===null) {
+  if (searchTerm === "" || searchTerm === null) {
     return [];
   }
   const result = await Blog.find({

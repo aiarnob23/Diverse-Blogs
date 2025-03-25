@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { mapFirebaseError } from "../utils/errorMapper";
 import { registerUserToDB } from "../services/authService";
+import { sendOTP } from "../services/otpService";
 
 export const useRegisterUser = () => {
   const authContext = useContext(AuthContext);
@@ -20,10 +21,10 @@ export const useRegisterUser = () => {
       // Register user using Firebase
       const response = await EmailPassSignUp(email, password);
       const registeredEmail = response.user?.email;
-
-      if (registeredEmail === email) {
-        // Store registered user to DB
-        await registerUserToDB(name, email);
+       console.log(registeredEmail);
+      if (registeredEmail) {
+        await registerUserToDB(name, registeredEmail);
+        await sendOTP(registeredEmail);
         return { success: true, error: null };
       }
     } catch (error: any) {

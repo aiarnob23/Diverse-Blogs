@@ -35,11 +35,11 @@ export default function Register() {
       }
 
       const result = await registerUser(name, email, password);
-
+      console.log(result);
       if (result?.error) {
         setError(result.error);
       } else if (result?.success) {
-        alert("Registration successful!");
+        window.location.replace("/auth/verify-otp");
       }
     } catch (error: any) {
       console.error("Error during registration:", error);

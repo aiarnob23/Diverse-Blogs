@@ -10,6 +10,7 @@ import CreateBlog from "../pages/createBlog/CreateBlog";
 import UserProfile from "../pages/selfProfile/selfProfile";
 import ReadBlog from "../pages/readBlog/ReadBlog";
 import Search from "../pages/search/Search";
+import OTP from "../pages/otp-verify/Otp";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "/auth/register",
         element: <Register />,
       },
+      {
+        path: "/auth/verify-otp",
+        element:<OTP/>
+      }
     ],
   },
   {

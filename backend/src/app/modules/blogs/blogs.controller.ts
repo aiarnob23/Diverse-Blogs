@@ -3,30 +3,34 @@ import sendResponse from "../../utils/sendResponse";
 import { blogServices } from "./blogs.service";
 
 //create new blog
-const createNewBlog = catchAsync(async (req, res) => {
+const createNewBlog = catchAsync(async (req : any, res) => {
   const payload = req?.body;
-    const result = await blogServices.postNewBlog(payload);
-    sendResponse(res, {
-        success: true,
-        statusCode: 200,
-        message: "Blog Posted",
-        data:result,
-    })
-})
+  if (payload.author == req?.user?.email) {
+    delete payload.author;
+    payload.authorEmail = req.user.email;
+  }
+  const result = await blogServices.postNewBlog(payload);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Blog Posted",
+    data: result,
+  });
+});
 
 //get blogs using email
 const getUserBlogs = catchAsync(async (req, res) => {
   const email = req?.body?.email;
   const result = await blogServices.findUserBlogs(email);
   sendResponse(res, {
-    success:true,
+    success: true,
     statusCode: 200,
     message: "Blogs fetched successfully",
-    data:result,
-  })
-})
+    data: result,
+  });
+});
 
-//get blog details 
+//get blog details
 const getBlogDetails = catchAsync(async (req, res) => {
   const id = req?.params?.id;
   const result = await blogServices.getBlogDetails(id);
@@ -36,20 +40,19 @@ const getBlogDetails = catchAsync(async (req, res) => {
     message: "Blog details fetched successfully",
     data: result,
   });
-})
+});
 
-//get all blogs 
+//get all blogs
 const getAllBlogs = catchAsync(async (req, res) => {
-  const { category , page, blogs } = req?.query || null;
-  const result = await blogServices.getBLogs(category , page, blogs);
+  const { category, page, blogs } = req?.query || null;
+  const result = await blogServices.getBLogs(category, page, blogs);
   sendResponse(res, {
     success: true,
     statusCode: 200,
     message: "Blogs search results",
     data: result,
-  })
-
-})
+  });
+});
 
 //get blogs by search-term
 const getBlogsBySearch = catchAsync(async (req, res) => {
@@ -59,10 +62,9 @@ const getBlogsBySearch = catchAsync(async (req, res) => {
     success: true,
     statusCode: 200,
     message: "Search Results",
-    data:result,
-  })
-})
-
+    data: result,
+  });
+});
 
 export const blogControllers = {
   createNewBlog,
@@ -70,4 +72,4 @@ export const blogControllers = {
   getBlogDetails,
   getAllBlogs,
   getBlogsBySearch,
-}
+};
