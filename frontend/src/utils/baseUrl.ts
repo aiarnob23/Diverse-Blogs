@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const baseUrl = axios.create({
-  baseURL: "http://localhost:4000/api/",
+  baseURL: "https://diverse-blogs-backend.vercel.app/api/",
 });

@@ -3,6 +3,7 @@ import BlogEditor from "../../components/blogEditor/BlogEditor";
 import CoverImageUploader from "../../components/blogEditor/CoverImage";
 import { useUpload } from "../../hooks/useUpload";
 import { createNewBlog } from "../../services/blogService";
+import { useAlert } from "../../context/AlertContext";
 
 const BLOG_CATEGORIES = [
   "Technology",
@@ -25,6 +26,7 @@ const CreateBlog: React.FC = () => {
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { uploadImage } = useUpload();
+    const { showAlert } = useAlert();
 
   const handleBlogSubmit = async () => {
     if (!title.trim()) {
@@ -74,10 +76,13 @@ const CreateBlog: React.FC = () => {
         date: new Date(),
       };
 
-      const response = await createNewBlog(newBlog);
+       await createNewBlog(newBlog);
 
       // Show success message or redirect
-      alert("Blog published successfully!");
+      setTimeout(() => {
+        showAlert("success", "Blog Created Successfully");
+        window.location.replace("/user/profile");
+      }, 400);
 
       // Reset form
       setTitle("");

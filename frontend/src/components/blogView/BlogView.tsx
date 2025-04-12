@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import {
   FaEdit,
-  FaTrashAlt,
   FaCalendarAlt,
   FaBookmark,
   FaShareAlt,
@@ -11,6 +10,7 @@ import {
 } from "react-icons/fa";
 import Modal from "../modal/Modal";
 import Profiles from "../profiles/Profiles";
+import { Link } from "react-router-dom";
 
 export default function Blog({ blog }: { blog: any }) {
   const [cookies] = useCookies(["email"]);
@@ -188,45 +188,16 @@ export default function Blog({ blog }: { blog: any }) {
           {cookies.email === blog?.authorEmail && (
             <div className="px-8 md:px-16 py-6 bg-gray-50 border-t border-gray-200">
               <div className="flex justify-end gap-4">
-                <button className="flex items-center gap-2 text-blue-700 bg-blue-50 hover:bg-blue-100 px-6 py-3 rounded-lg shadow-sm transition-all duration-200 border border-blue-200">
+                <Link
+                  to={`/user/edit-blog/${blog._id}`}
+                  className="flex items-center gap-2 text-blue-700 bg-blue-50 hover:bg-blue-100 px-6 py-3 rounded-lg shadow-sm transition-all duration-200 border border-blue-200"
+                >
                   <FaEdit />
                   <span className="font-medium">Edit Article</span>
-                </button>
-                <button className="flex items-center gap-2 text-red-700 bg-red-50 hover:bg-red-100 px-6 py-3 rounded-lg shadow-sm transition-all duration-200 border border-red-200">
-                  <FaTrashAlt />
-                  <span className="font-medium">Delete</span>
-                </button>
+                </Link>
               </div>
             </div>
           )}
-        </div>
-
-        {/* Related articles section */}
-        <div className="mt-12 bg-white rounded-xl p-6 shadow-lg border border-gray-200">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">
-            You might also like
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
-              >
-                <div className="h-32 bg-gray-200"></div>
-                <div className="p-4">
-                  <span className="text-xs font-semibold text-blue-600">
-                    Category
-                  </span>
-                  <h4 className="font-medium text-gray-900 mt-1">
-                    Related Article Title
-                  </h4>
-                  <p className="text-sm text-gray-500 mt-2">
-                    A short preview of another interesting article...
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 

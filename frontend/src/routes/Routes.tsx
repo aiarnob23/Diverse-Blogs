@@ -11,6 +11,8 @@ import UserProfile from "../pages/selfProfile/selfProfile";
 import ReadBlog from "../pages/readBlog/ReadBlog";
 import Search from "../pages/search/Search";
 import OTP from "../pages/otp-verify/Otp";
+import EditBlogPage from "../pages/edit-blog/EditBlog";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,13 +39,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/auth/verify-otp",
-        element:<OTP/>
-      }
+        element: <OTP />,
+      },
     ],
   },
   {
     path: "/user",
-    element: <MainLayout />,
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/user/following",
@@ -59,12 +65,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/user/blog/:id",
-        element:<ReadBlog/>
+        element: <ReadBlog />,
       },
       {
         path: "/user/blogs/search",
-        element:<Search/>
-      }
+        element: <Search />,
+      },
+      {
+        path: "/user/edit-blog/:id",
+        element: <EditBlogPage />,
+      },
     ],
   },
 ]);

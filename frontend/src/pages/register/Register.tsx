@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import cover from "../../../public/images/auth/leaf-table-min.jpg";
 import { useRegisterUser } from "../../hooks/useRegisterUser";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useGoogleSignIn } from "../../hooks/useGoogleSignIn";
+import { useAlert } from "../../context/AlertContext";
 
 export default function Register() {
 
@@ -14,6 +15,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const {showAlert} = useAlert();
 
   //handle manual registration
   const handleEmailPassRegister = async (e: React.FormEvent) => {
@@ -62,7 +64,10 @@ export default function Register() {
       if (result?.error) {
         setError(result.error); 
       } else if (result?.success) {
-        alert("Google registration successful!"); 
+        setTimeout(() => {
+          showAlert("success", "Login Successful");
+          window.location.replace('/');
+        }, 400);
       }
     } catch (error: any) {
       console.error("Error during Google registration:", error);

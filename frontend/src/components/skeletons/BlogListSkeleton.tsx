@@ -1,5 +1,5 @@
 export default function BlogSkeleton() {
-  const skeletonBlogs = Array.from({ length: 7 }); // Simulating 7 blogs
+  const skeletonBlogs = Array.from({ length: 7 }); 
 
   return (
     <div className="border-2 p-4">

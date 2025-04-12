@@ -45,7 +45,7 @@ export default function Search() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4">
+    <div className="w-full min-h-screen max-w-4xl mx-auto p-4">
       <div className="relative mb-6">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg

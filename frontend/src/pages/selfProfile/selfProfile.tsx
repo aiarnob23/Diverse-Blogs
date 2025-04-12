@@ -267,7 +267,7 @@ export default function SelfProfile() {
                             onClick={(e) => {
                               e.stopPropagation();
                               navigate(
-                                `/user/edit-blog/${blog?._id || blog.id}`
+                                `/user/edit-blog/${blog?._id}`
                               );
                             }}
                             className="text-blue-600 text-sm hover:text-blue-800 flex items-center"

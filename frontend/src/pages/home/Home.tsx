@@ -1,6 +1,8 @@
 import Banner from "../../components/banner/Banner";
 import BlogList from "../../components/blogList/BlogList";
-import { FiPlus } from "react-icons/fi";
+import {
+FaPen
+} from "react-icons/fa";
 
 export default function Home() {
   const handlePostBlog = async () => {
@@ -15,9 +17,9 @@ export default function Home() {
       <div className="fixed bottom-8 right-8">
         <button
           onClick={handlePostBlog}
-          className="bg-purple-300 rounded-md p-1"
+          className="bg-gray-200 p-2 rounded-lg"
         >
-          <FiPlus size={30} />
+          <FaPen size={20} />
         </button>
       </div>
     </div>

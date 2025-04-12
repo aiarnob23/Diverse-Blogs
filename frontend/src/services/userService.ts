@@ -1,35 +1,46 @@
 import { baseUrl } from "../utils/baseUrl";
 
-//get user details by email
+// Get user details by email
 export const getUserDetails = async (email: string) => {
-    console.log(email);
   try {
     const response = await baseUrl.post("user/user-details", {
-      email:email,
+      email: email,
     });
     return response?.data?.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
-//get user details by id
+// Get user details by id
 export const getUserDetailsById = async (id: string) => {
   try {
-    console.log(id);
     const response = await baseUrl.get(`user/user-details-by-id/${id}`);
-    console.log(response);
     return response?.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
-}
+};
 
+// Update following list
+export const followUser = async (selfId:string, followingId:string) => {
+  try {
+    const response = await baseUrl.patch(`user/followings`, {
+      selfId: selfId,
+      followingId:followingId
+    });
+    return response?.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 
-//get followings list
+// Get followings list
 export const fetchFollowingsList = async (email: string) => {
   try {
-    console.log(email);
     const response = await getUserDetails(email);
     if (!response || !response._id) {
       throw new Error("User not found or invalid email");
@@ -39,6 +50,6 @@ export const fetchFollowingsList = async (email: string) => {
     return res;
   } catch (error) {
     console.error("Error fetching followings list:", error);
-    return null; 
+    return null;
   }
 };

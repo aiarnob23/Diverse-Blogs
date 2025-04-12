@@ -13,7 +13,7 @@ export default function BlogList({category} : {category : any}) {
   const [activeCategory, setActiveCategory] = useState<string>(category);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [blogPerPage, setBlogPerPage] = useState(18);
+  const blogPerPage = 18;
 
   useEffect(() => {
     const getAllBlogs = async () => {

@@ -50,6 +50,12 @@ export default function Login() {
       if (res?.error) {
         setError(res.error); 
       }
+      else {
+         setTimeout(() => {
+           showAlert("success", "Login Successful");
+           window.location.replace("/");
+         }, 400);
+      }
     } catch (error) {
       console.error("Unexpected error during Google login:", error);
       setError("An unexpected error occurred. Please try again."); 

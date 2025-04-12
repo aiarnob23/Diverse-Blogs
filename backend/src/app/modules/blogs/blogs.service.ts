@@ -3,7 +3,7 @@ import { userServices } from "../users/users.service";
 import { TBlog } from "./blogs.interface";
 import { Blog } from "./blogs.model";
 
-//post new blog
+// Post new blog
 const postNewBlog = async (payload: TBlog) => {
   const author = await userServices.getUserDetails(payload.authorEmail);
   const authorName = author?.name;
@@ -11,7 +11,6 @@ const postNewBlog = async (payload: TBlog) => {
   const updatedPayload = { ...payload, authorName };
 
   const blog = await Blog.create(updatedPayload);
-  console.log("Created blog:", blog);
 
   if (blog?._id) {
     const updatedUser = await User.findOneAndUpdate(
@@ -23,7 +22,7 @@ const postNewBlog = async (payload: TBlog) => {
   }
 };
 
-//get blogs by search-term
+// Get blogs by search term
 const getBlogsBySearchTerm = async (searchTerm: any) => {
   if (searchTerm === "" || searchTerm === null) {
     return [];
@@ -37,37 +36,49 @@ const getBlogsBySearchTerm = async (searchTerm: any) => {
   return result;
 };
 
-//get all blogs
+// Get all blogs
 const getBLogs = async (category: any, page: any, blogs: any) => {
   let filter = {};
   let currentPage = page || 1;
   let limit = blogs || 18;
-  console.log(currentPage, limit);
+
   if (category) {
     filter = { category };
   }
+
   const totalBLogs = await Blog.countDocuments(filter);
   const result = await Blog.find(filter)
     .skip((+currentPage - 1) * +limit)
     .limit(+limit)
     .sort({ date: -1 });
-  console.log(result);
+
   return { result, totalBLogs };
 };
 
-//get blogs using user email
+// Get blogs using user email
 const findUserBlogs = async (email: string) => {
   const blogs = await User.find({ email: email }, { blogs: 1 }).populate(
     "blogs"
   );
-  console.log(blogs);
   return blogs;
 };
 
-//get single blogs details
+// Get single blog details
 const getBlogDetails = async (id: any) => {
   const blog = await Blog.findById(id);
   return blog;
+};
+
+// Update blog (partial update)
+const updateBLog = async (id: any, payload: TBlog) => {
+  const result = await Blog.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
+// Delete blog
+const deleteBLog = async (id: any) => {
+  const result = await Blog.findByIdAndDelete(id);
+  return result;
 };
 
 export const blogServices = {
@@ -76,4 +87,6 @@ export const blogServices = {
   getBlogDetails,
   getBLogs,
   getBlogsBySearchTerm,
+  updateBLog,
+  deleteBLog,
 };

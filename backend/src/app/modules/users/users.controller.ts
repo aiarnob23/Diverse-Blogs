@@ -48,6 +48,7 @@ const getFollowingsList = catchAsync(async (req, res) => {
 //update following list
 const updateFollowingsList = catchAsync(async (req, res) => {
   const { selfId, followingId } = req?.body;
+  console.log(selfId,followingId);
   if (!selfId || !followingId) {
     sendResponse(res, errorResponse("Invalid Request", 400));
   }

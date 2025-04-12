@@ -2,8 +2,8 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { blogServices } from "./blogs.service";
 
-//create new blog
-const createNewBlog = catchAsync(async (req : any, res) => {
+// Create new blog
+const createNewBlog = catchAsync(async (req: any, res) => {
   const payload = req?.body;
   if (payload.author == req?.user?.email) {
     delete payload.author;
@@ -18,7 +18,7 @@ const createNewBlog = catchAsync(async (req : any, res) => {
   });
 });
 
-//get blogs using email
+// Get user blogs
 const getUserBlogs = catchAsync(async (req, res) => {
   const email = req?.body?.email;
   const result = await blogServices.findUserBlogs(email);
@@ -30,7 +30,7 @@ const getUserBlogs = catchAsync(async (req, res) => {
   });
 });
 
-//get blog details
+// Get blog details
 const getBlogDetails = catchAsync(async (req, res) => {
   const id = req?.params?.id;
   const result = await blogServices.getBlogDetails(id);
@@ -42,7 +42,7 @@ const getBlogDetails = catchAsync(async (req, res) => {
   });
 });
 
-//get all blogs
+// Get all blogs
 const getAllBlogs = catchAsync(async (req, res) => {
   const { category, page, blogs } = req?.query || null;
   const result = await blogServices.getBLogs(category, page, blogs);
@@ -54,7 +54,7 @@ const getAllBlogs = catchAsync(async (req, res) => {
   });
 });
 
-//get blogs by search-term
+// Get blogs by search term
 const getBlogsBySearch = catchAsync(async (req, res) => {
   const searchTerm = req?.query?.searchTerm || "";
   const result = await blogServices.getBlogsBySearchTerm(searchTerm);
@@ -66,10 +66,41 @@ const getBlogsBySearch = catchAsync(async (req, res) => {
   });
 });
 
+// Update existing blog (partial update)
+const updateBlog = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const payload = req.body;
+
+  const result = await blogServices.updateBLog(id, payload);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Blog updated successfully",
+    data: result,
+  });
+});
+
+// Delete a blog
+const deleteBlog = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const result = await blogServices.deleteBLog(id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Blog deleted successfully",
+    data: result,
+  });
+});
+
 export const blogControllers = {
   createNewBlog,
   getUserBlogs,
   getBlogDetails,
   getAllBlogs,
   getBlogsBySearch,
+  updateBlog,
+  deleteBlog,
 };
