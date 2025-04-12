@@ -14,7 +14,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://diverse-blogs-frontend.vercel.app",
+    origin: "https://diverse-blogs.vercel.app",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
 );
