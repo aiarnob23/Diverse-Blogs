@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import cover from "../../../public/images/auth/leaf-table-min.jpg";
 import { useRegisterUser } from "../../hooks/useRegisterUser";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
