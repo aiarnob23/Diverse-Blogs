@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://diverse-blogs.vercel.app",
+    origin: ["https://diverse-blogs.vercel.app","http://localhost:5173/"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
