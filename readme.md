@@ -23,7 +23,7 @@ Follow the steps below to set up this project locally.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/blog-website.git
+   git clone https://github.com/aiarnob23/Diverse-Blogs.git
 2. Navigate to the project directory:
    cd blog-website
 3.Install the necessary dependencies:
@@ -31,7 +31,7 @@ Follow the steps below to set up this project locally.
 3.Set up your .env file
 4.Start the development server:
    npm start
-5.Open your browser and go to http://localhost:3000 to view the 
+5.Open your browser and go to http://localhost:5173 to view the 
   application.
 
 ## Usage
