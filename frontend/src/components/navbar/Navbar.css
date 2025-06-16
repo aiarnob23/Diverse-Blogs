@@ -5,3 +5,7 @@
   font-size: 18px;
   font-weight: 600;
 }
+
+.navbar a.active {
+  border-radius: 30px;
+}

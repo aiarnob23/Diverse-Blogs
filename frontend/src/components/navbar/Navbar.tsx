@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import "../navbar/Navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Menu, PenTool, Search, Heart, Home, User, LogOut } from 'lucide-react';
 
 export default function Navbar() {
   const authContext = useContext(AuthContext);
@@ -18,95 +19,111 @@ export default function Navbar() {
   }
 
   const NavLinks = (
-    <div className="flex justify-center items-center gap-4">
-      <li>
-        <NavLink to="/">Home</NavLink>
+    <div className="flex flex-col lg:flex-row justify-center items-start lg:items-center gap-2 lg:gap-4 w-full lg:w-auto">
+      <li className="w-full lg:w-auto">
+        <NavLink 
+          to="/" 
+          className="block w-full text-left py-3 px-4 lg:py-0 lg:px-0 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-blue-600 rounded-lg lg:rounded-none transition-all duration-200 font-medium flex items-center gap-2"
+        >
+          <Home className="w-4 h-4 lg:w-5 lg:h-5" />
+          <span>Home</span>
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/user/following">Following</NavLink>
+      <li className="w-full lg:w-auto">
+        <NavLink 
+          to="/user/following"
+          className="block w-full text-left py-3 px-4 lg:py-0 lg:px-0 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-blue-600 rounded-lg lg:rounded-none transition-all duration-200 font-medium flex items-center gap-2"
+        >
+          <Heart className="w-4 h-4 lg:w-5 lg:h-5" />
+          <span>Following</span>
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/user/blogs/search">Search</NavLink>
+      <li className="w-full lg:w-auto">
+        <NavLink 
+          to="/user/blogs/search"
+          className="block w-full text-left py-3 px-4 lg:py-0 lg:px-0 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-blue-600 rounded-lg lg:rounded-none transition-all duration-200 font-medium flex items-center gap-2"
+        >
+          <Search className="w-4 h-4 lg:w-5 lg:h-5" />
+          <span>Search</span>
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/user/create-blog">Write</NavLink>
+      <li className="w-full lg:w-auto">
+        <NavLink 
+          to="/user/create-blog"
+          className="block w-full text-left py-3 px-4 lg:py-0 lg:px-0 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-blue-600 rounded-lg lg:rounded-none transition-all duration-200 font-medium flex items-center gap-2"
+        >
+          <PenTool className="w-4 h-4 lg:w-5 lg:h-5" />
+          <span>Write</span>
+        </NavLink>
       </li>
       {user && (
-        <li>
-          <NavLink to="/user/profile">Profile</NavLink>
+        <li className="w-full lg:w-auto">
+          <NavLink 
+            to="/user/profile"
+            className="block w-full text-left py-3 px-4 lg:py-0 lg:px-0 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-blue-600 rounded-lg lg:rounded-none transition-all duration-200 font-medium flex items-center gap-2"
+          >
+            <User className="w-4 h-4 lg:w-5 lg:h-5" />
+            <span>Profile</span>
+          </NavLink>
         </li>
       )}
     </div>
   );
 
   return (
-    <div className="bg-transparent bg-white backdrop-blur-sm bg-opacity-30 shadow-sm">
-      <div className="navbar max-w-[1280px] mx-auto">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+    <div className="bg-transparent bg-white backdrop-blur-sm bg-opacity-30 shadow-sm sticky top-0 z-50">
+      <div className="navbar max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Mobile menu button and logo */}
+        <div className="navbar-start flex items-center">
+          <div className="dropdown lg:hidden mr-3">
+            <div 
+              tabIndex={0} 
+              role="button" 
+              className="btn btn-ghost p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+            >
+              <Menu className="h-6 w-6" />
             </div>
             <ul
               id="navs"
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-white rounded-xl z-[1] mt-3 w-72 sm:w-80 p-4 shadow-lg border border-gray-100"
             >
               {NavLinks}
             </ul>
           </div>
           <Link to="/">
-            <div className="text-xl font-bold text-[#2B3440]">Diverse</div>
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-[#2B3440] hover:text-blue-600 transition-colors duration-200">
+              Diverse
+            </div>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        
+        {/* Desktop menu */}
+        <div className="navbar-center hidden lg:flex flex-1">
           <ul
             id="navs"
-            className="menu menu-horizontal text-xl font-[500] px-1"
+            className="menu menu-horizontal text-lg font-medium px-1 space-x-6"
           >
             {NavLinks}
           </ul>
         </div>
+        
+        {/* Auth buttons */}
         <div className="navbar-end">
           {!user ? (
             <NavLink to="/auth/login">
-              <button className="bg-blue-600 text-white py-2 px-6 rounded-full font-semibold shadow-md hover:bg-blue-700 transition duration-300">
+              <button className="bg-blue-600 text-white py-2 px-4 sm:px-6 rounded-full text-sm sm:text-base font-semibold shadow-md hover:bg-blue-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                 Login
               </button>
             </NavLink>
           ) : (
             <button
               onClick={handleLogOut}
-              className="bg-blue-600 text-white py-2 px-6 rounded-full text-sm font-semibold shadow-md hover:bg-blue-700 transition-all duration-300 flex items-center space-x-2"
+              className="bg-blue-600 text-white py-2 px-3 sm:px-4 lg:px-6 rounded-full text-xs sm:text-sm font-semibold shadow-md hover:bg-blue-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center space-x-1 sm:space-x-2"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 16l4-4m0 0l-4-4m4 4H3"
-                ></path>
-              </svg>
-              <span>Logout</span>
+              <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Logout</span>
             </button>
           )}
         </div>

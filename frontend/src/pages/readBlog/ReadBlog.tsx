@@ -3,44 +3,61 @@ import { useParams } from "react-router-dom";
 import { fetchBlogDetails } from "../../services/blogService";
 import Blog from "../../components/blogView/BlogView";
 
+// A simple skeleton loader component
+const SkeletonLoader = () => (
+  <div className="skeleton-loader">
+    <div className="skeleton-header"></div>
+    <div className="skeleton-content"></div>
+    <div className="skeleton-footer"></div>
+  </div>
+);
+
 export default function ReadBlog() {
   const { id } = useParams();
-  const [blog, setBlog] = useState<any>(null); // Default to null instead of an empty array
+  const [blog, setBlog] = useState<any>(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const getBlogDetails = async () => {
-      setLoading(true); // Ensure loading state is true before fetch
+      setLoading(true); 
       try {
         const data = await fetchBlogDetails(id);
-        setBlog(data); // Set the fetched blog data
+        setBlog(data); 
       } catch (err) {
-        setError("Error fetching blog details"); // Error handling message
+        setError("Error fetching blog details"); 
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false); 
       }
     };
 
     if (id) {
       getBlogDetails();
     }
-  }, [id]); // Re-run when the `id` changes
+  }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>; // Optional: loading message
+    return (
+      <div className="loading-container">
+        <SkeletonLoader /> {/* Using the skeleton loader to prevent layout shift */}
+      </div>
+    ); 
   }
 
   if (error) {
-    return <div>{error}</div>; // Error message if fetching fails
+    return (
+      <div className="error-container">
+        <p>{error}</p>
+      </div>
+    ); 
   }
 
   return (
-    <div>
+    <div className="blog-container">
       {blog ? (
         <Blog blog={blog} />
       ) : (
-        <div>No blog found</div> // Optional: message if no blog data found
+        <div className="no-blog">No blog found</div>
       )}
     </div>
   );

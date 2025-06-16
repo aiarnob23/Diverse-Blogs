@@ -6,33 +6,64 @@ export default function Banner() {
   return (
     <div>
       <div
-        className="hero h-[800px] w-[100%] relative"
+        className="hero min-h-screen lg:h-[800px] w-full relative"
         style={{
           backgroundImage: `url(${cover})`,
         }}
       >
         <div className="hero-overlay bg-opacity-50" />
-        <div className="absolute top-0 w-full">
+        
+        {/* Navbar */}
+        <div className="absolute top-0 w-full z-10">
           <Navbar />
         </div>
-        <div className="absolute  text-white text-center">
-          <h2 className="text-4xl">Exploring the Wonders of Mountains</h2>
-          <p className="text-lg text-gray-400 mb-2 dark:text-gray-300 mt-4">
-            Dive into a journey of breathtaking landscapes, serene peaks, and{" "}
-            <br />
-            the timeless beauty of nature's majestic creations.
-          </p>
-          <Link
-            to={`user/blog/67f9ecdff5b9d152d4a0fb33`}
-            className="text-gray-200"
-          >
-            . . . Read More
-          </Link>
+        
+        {/* Main Content */}
+        <div className="absolute inset-0 flex items-center justify-center text-white text-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto space-y-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              Exploring the Wonders of Mountains
+            </h2>
+            
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Dive into a journey of breathtaking landscapes, serene peaks, and
+              the timeless beauty of nature's majestic creations.
+            </p>
+            
+            <div className="pt-4">
+              <Link
+                to={`user/blog/67f9ecdff5b9d152d4a0fb33`}
+                className="inline-flex items-center text-gray-200 hover:text-white transition-colors duration-300 text-sm sm:text-base md:text-lg font-medium"
+              >
+                <span className="mr-2">Read More</span>
+                <svg 
+                  className="w-4 h-4 sm:w-5 sm:h-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="absolute text-gray-400 right-4 bottom-4">
-          <p>Aminul Islam Arnob</p>
-          <p>31 December, 2024</p>
-          <p>10 mins read</p>
+        
+        {/* Author Info */}
+        <div className="hidden md:blockabsolute bottom-4 right-4 text-gray-300 text-right text-xs sm:text-sm">
+          <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-lg p-3 sm:p-4 space-y-1">
+            <p className="font-medium">Aminul Islam Arnob</p>
+            <p className="text-gray-400">31 December, 2024</p>
+            <p className="text-gray-400">10 mins read</p>
+          </div>
+        </div>
+        
+        {/* Mobile Author Info - Alternative positioning for small screens */}
+        <div className="absolute bottom-4 left-4 right-4 text-gray-300 text-center text-xs sm:hidden">
+          <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-lg p-3 space-y-1">
+            <p className="font-medium">Aminul Islam Arnob</p>
+            <p className="text-gray-400">31 December, 2024 • 10 mins read</p>
+          </div>
         </div>
       </div>
     </div>
