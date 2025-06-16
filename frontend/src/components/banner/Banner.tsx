@@ -17,7 +17,7 @@ export default function Banner() {
         </div>
         <div className="absolute  text-white text-center">
           <h2 className="text-4xl">Exploring the Wonders of Mountains</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
+          <p className="text-lg text-gray-400 mb-2 dark:text-gray-300 mt-4">
             Dive into a journey of breathtaking landscapes, serene peaks, and{" "}
             <br />
             the timeless beauty of nature's majestic creations.
@@ -31,7 +31,7 @@ export default function Banner() {
         </div>
         <div className="absolute text-gray-400 right-4 bottom-4">
           <p>Aminul Islam Arnob</p>
-          <p>12 April, 2025</p>
+          <p>31 December, 2024</p>
           <p>10 mins read</p>
         </div>
       </div>
