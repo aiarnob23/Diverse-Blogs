@@ -57,6 +57,17 @@ You can make changes to the React components and see live updates.
 For linting and formatting, the app uses ESLint and Prettier, which will automatically check your code.
 
 ## Technologies Used
-React.JS, React router, Tailwind css, Css, Firebase, Mongodb, JWT token, Express.JS, Node.JS, Mongoose etc.
+
+- **React.js**
+- **React Router**
+- **Tailwind CSS**
+- **CSS**
+- **Firebase**
+- **MongoDB**
+- **JWT Token**
+- **Express.js**
+- **Node.js**
+- **Mongoose**
+- etc.
 
 Developed with ❤️ by Your Aminul Islam Arnob
