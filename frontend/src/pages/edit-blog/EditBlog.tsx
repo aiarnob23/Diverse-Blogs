@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteBlog, editBlog, fetchBlogDetails } from "../../services/blogService";
+import BlogLoadingSkeleton from "../../components/skeletons/BlogSkeleton";
 
 export default function EditBlogPage() {
   const { id } = useParams();
@@ -12,6 +13,13 @@ export default function EditBlogPage() {
   const [category, setCategory] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   useEffect(() => {
     const getBlogDetails = async () => {
@@ -58,7 +66,7 @@ export default function EditBlogPage() {
   };
 
   if (isLoading || !blog) {
-    return <div>Loading...</div>;
+    return <div><BlogLoadingSkeleton/></div>;
   }
 
   return (

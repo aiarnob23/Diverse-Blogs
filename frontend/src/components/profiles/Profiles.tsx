@@ -69,7 +69,7 @@ export default function Profiles({ email }: { email: string }) {
     return (
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl lg:rounded-3xl shadow-lg overflow-hidden">
-          <div className="h-16 sm:h-20 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+          <div className="h-16 sm:h-20 bg-gradient-to-r from-blue-500 to-blue-200"></div>
           <div className="px-4 sm:px-6 pb-6 relative">
             <div className="flex flex-col items-center space-y-4 animate-pulse">
               <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full bg-gray-300 -mt-10 sm:-mt-12 lg:-mt-16"></div>
@@ -91,7 +91,7 @@ export default function Profiles({ email }: { email: string }) {
     <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="bg-white rounded-2xl lg:rounded-3xl shadow-lg overflow-hidden">
         <div className="relative">
-          <div className="h-16 sm:h-20 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+          <div className="h-16 sm:h-20 bg-gradient-to-r from-blue-500 to-blue-300"></div>
           
           <div className="px-4 sm:px-6 pb-6 relative">
             <div className="flex flex-col items-center text-center">

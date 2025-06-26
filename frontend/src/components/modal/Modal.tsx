@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           ✕
         </button>
 
-        {/* Scrollable Content (No visible scrollbar) */}
+        {/* Scrollable Content  */}
         <div className="max-h-[80vh] overflow-y-auto scrollbar-hidden">
           {children}
         </div>

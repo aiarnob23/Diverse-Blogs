@@ -49,7 +49,7 @@ export default function SelfProfile() {
         <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-100 mb-6 lg:mb-8">
           
           {/* Cover Photo - Responsive height */}
-          <div className="relative h-32 sm:h-48 lg:h-56 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600">
+          <div className="relative h-32 sm:h-48 lg:h-56 bg-gradient-to-r from-blue-500 to-blue-200">
             <div className="absolute inset-0 bg-black bg-opacity-20"></div>
             <button className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 sm:p-3 bg-white bg-opacity-20 backdrop-blur-sm rounded-full text-white hover:bg-opacity-30 transition-all duration-200 group">
               <FaEdit className="text-sm sm:text-base group-hover:scale-110 transition-transform" />
@@ -92,7 +92,7 @@ export default function SelfProfile() {
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 sm:shrink-0">
                   <button
                     onClick={() => navigate("/user/create-blog")}
-                    className="flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium text-sm sm:text-base"
+                    className="flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium text-sm sm:text-base"
                   >
                     <FaPenNib className="mr-2 text-sm" />
                     <span className="hidden sm:inline">Write a Blog</span>
@@ -338,7 +338,7 @@ export default function SelfProfile() {
                     </p>
                     <button
                       onClick={() => navigate("/user/create-blog")}
-                      className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium text-sm sm:text-base transform hover:-translate-y-0.5"
+                      className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium text-sm sm:text-base transform hover:-translate-y-0.5"
                     >
                       Write Your First Blog
                     </button>

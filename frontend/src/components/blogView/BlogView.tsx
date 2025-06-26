@@ -85,7 +85,6 @@ export default function Blog({ blog }: { blog: any }) {
             </div>
           </div>
 
-          {/* Content Section with alternating backgrounds */}
           <div className="px-8 md:px-16 py-10 bg-white">
             {/* Social sharing & actions bar */}
             <div className="flex justify-between items-center mb-8 pb-6 border-b border-gray-200">
@@ -126,7 +125,7 @@ export default function Blog({ blog }: { blog: any }) {
               </div>
             </div>
 
-            {/* Blog content with visual enhancements */}
+            {/* Blog content */}
             <article className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-a:text-blue-600">
               <div
                 className="text-gray-800 leading-relaxed"
@@ -134,7 +133,6 @@ export default function Blog({ blog }: { blog: any }) {
               />
             </article>
 
-            {/* Tags with improved visual styling */}
             {blog.tags && blog.tags.length > 0 && (
               <div className="mt-12">
                 <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
@@ -154,7 +152,7 @@ export default function Blog({ blog }: { blog: any }) {
             )}
           </div>
 
-          {/* Author info card with distinct background */}
+          {/* Author info card */}
           <div className="px-8 md:px-16 py-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-t border-b border-gray-200">
             <h4 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">
               About the Author
@@ -191,7 +189,7 @@ export default function Blog({ blog }: { blog: any }) {
             </div>
           </div>
 
-          {/* Action bar with improved contrast */}
+          {/* Action bar  */}
           {cookies.email === blog?.authorEmail && (
             <div className="px-8 md:px-16 py-6 bg-gray-50 border-t border-gray-200">
               <div className="flex justify-end gap-4">
