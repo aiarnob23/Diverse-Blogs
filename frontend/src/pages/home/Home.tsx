@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="relative">
       <Banner />
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-[1280px] mx-auto ">
         <BlogList category={"All"}/>
       </div>
       <div className="fixed bottom-8 right-8">

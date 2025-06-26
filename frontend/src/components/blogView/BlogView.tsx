@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import {
   FaEdit,
@@ -24,6 +24,13 @@ export default function Blog({ blog }: { blog: any }) {
     setProfileEmail(blog?.authorEmail);
     setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen py-12">

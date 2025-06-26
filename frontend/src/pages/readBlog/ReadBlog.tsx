@@ -2,15 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchBlogDetails } from "../../services/blogService";
 import Blog from "../../components/blogView/BlogView";
+import BlogLoadingSkeleton from "../../components/skeletons/BlogSkeleton";
 
-// A simple skeleton loader component
-const SkeletonLoader = () => (
-  <div className="skeleton-loader">
-    <div className="skeleton-header"></div>
-    <div className="skeleton-content"></div>
-    <div className="skeleton-footer"></div>
-  </div>
-);
 
 export default function ReadBlog() {
   const { id } = useParams();
@@ -36,29 +29,52 @@ export default function ReadBlog() {
     }
   }, [id]);
 
+  //  loading skeleton 
   if (loading) {
-    return (
-      <div className="loading-container">
-        <SkeletonLoader /> {/* Using the skeleton loader to prevent layout shift */}
-      </div>
-    ); 
+    return <BlogLoadingSkeleton />;
   }
 
+  //  error state
   if (error) {
     return (
-      <div className="error-container">
-        <p>{error}</p>
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen py-12 flex items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
+          <div className="text-center">
+            <div className="text-red-500 text-6xl mb-4">⚠️</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
       </div>
-    ); 
+    );
   }
 
-  return (
-    <div className="blog-container">
-      {blog ? (
-        <Blog blog={blog} />
-      ) : (
-        <div className="no-blog">No blog found</div>
-      )}
-    </div>
-  );
+
+  if (!blog) {
+    return (
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen py-12 flex items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
+          <div className="text-center">
+            <div className="text-gray-400 text-6xl mb-4">📄</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Blog Not Found</h2>
+            <p className="text-gray-600 mb-4">Sorry, the blog you're looking for doesn't exist or has been removed.</p>
+            <button 
+              onClick={() => window.history.back()} 
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <Blog blog={blog} />;
 }

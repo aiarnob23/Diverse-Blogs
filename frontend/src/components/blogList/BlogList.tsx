@@ -46,10 +46,10 @@ export default function BlogList({category} : {category : any}) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
       {/* Header */}
       <div className="text-center mb-8 lg:mb-12">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Our Blog
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
+          Read According to Your Mood
         </h1>
-        <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+        <p className="text-gray-600 max-w-[300px] text-base sm:text-lg md:max-w-2xl mx-auto">
           Discover insights, stories, and knowledge across various topics
         </p>
       </div>
